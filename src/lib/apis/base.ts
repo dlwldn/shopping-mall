@@ -1,8 +1,8 @@
-const BASE_URL = 'https://fakestoreapi.com';
+const BASE_URL = "https://fakestoreapi.com";
 
 type AnyOBJ = {
-  [key: string]: any
-}
+  [key: string]: any;
+};
 
 export const fetcher = async ({
   method,
@@ -10,24 +10,32 @@ export const fetcher = async ({
   body,
   params,
 }: {
-  method: 'GET' | 'POST' | 'PUT' | 'DELETE' | 'PATCH';
+  method: "GET" | "POST" | "PUT" | "DELETE" | "PATCH";
   path: string;
   body?: AnyOBJ;
   params?: AnyOBJ;
 }) => {
   try {
-    const url = `${BASE_URL}${path}`;
+    let url = `${BASE_URL}${path}`;
     const fetchOptions: RequestInit = {
       method,
       headers: {
-        'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': BASE_URL
-      }
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": BASE_URL,
+      },
+    };
+
+    if (params) {
+      const searchParams = new URLSearchParams(params);
+      url += "?" + searchParams.toString();
     }
+
+    if (body) fetchOptions.body = JSON.stringify(body);
+
     const res = await fetch(url, fetchOptions);
     const json = res.json();
     return json;
-  } catch(err) {
+  } catch (err) {
     console.error(err);
   }
-}
+};
