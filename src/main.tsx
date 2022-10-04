@@ -5,14 +5,22 @@ import { BrowserRouter } from "react-router-dom";
 import { QueryClientProvider } from "react-query";
 import { ReactQueryDevtools } from "react-query/devtools";
 import { queryClient } from "./queryClient";
+import { worker } from "./lib/mocks/browser";
 import "./scss/index.scss";
+import { RecoilRoot } from "recoil";
+
+if (import.meta.env.DEV) {
+  worker.start();
+}
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
     <BrowserRouter>
       <QueryClientProvider client={queryClient}>
-        <ReactQueryDevtools />
-        <App />
+        <RecoilRoot>
+          <ReactQueryDevtools />
+          <App />
+        </RecoilRoot>
       </QueryClientProvider>
     </BrowserRouter>
   </React.StrictMode>

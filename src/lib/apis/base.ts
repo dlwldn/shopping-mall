@@ -1,4 +1,7 @@
+import request, { RequestDocument } from "graphql-request";
+
 const BASE_URL = "https://fakestoreapi.com";
+const GRAPHQL_BASE_URL = "/";
 
 type AnyOBJ = {
   [key: string]: any;
@@ -39,3 +42,6 @@ export const fetcher = async ({
     console.error(err);
   }
 };
+
+export const graphqlFetcher = (query: RequestDocument, variables = {}) =>
+  request(GRAPHQL_BASE_URL, query, variables);
