@@ -7,7 +7,10 @@ import { CartType, GET_CART } from "../../lib/graphql/cart";
 
 const Cart = () => {
   const { data = [] } = useQuery<CartType[]>([queryKeys.CART], () =>
-    graphqlFetcher(GET_CART)
+    graphqlFetcher(GET_CART),
+    {
+      staleTime: 0,
+    }
   );
 
   if(!data.length) return <div>장바구니가 비었어요.</div>
