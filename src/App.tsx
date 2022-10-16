@@ -4,13 +4,12 @@ import Gnb from "./components/common/Gnb";
 import { pageUrl } from "./lib/consts/pageUrl";
 
 const Main = React.lazy(() => import("./pages/Main"));
-const ProductList = React.lazy(() => import("./pages/Products/ProductList"));
+const Product = React.lazy(() => import("./pages/Products/Product"));
 const ProductDetail = React.lazy(
   () => import("./pages/Products/ProductDetail")
 );
-const Cart = React.lazy(
-  () => import("./pages/Cart/Cart")
-);
+const Cart = React.lazy(() => import("./pages/Cart/Cart"));
+const Payment = React.lazy(() => import("./pages/Payment/Payment"));
 
 const App = () => {
   return (
@@ -25,9 +24,10 @@ const App = () => {
           }
         >
           <Route path={pageUrl.HOME} element={<Main />} />
-          <Route path={pageUrl.PRODUCT_LIST} element={<ProductList />} />
+          <Route path={pageUrl.PRODUCT_LIST} element={<Product />} />
           <Route path={pageUrl.PRODUCT_DETAIL} element={<ProductDetail />} />
           <Route path={pageUrl.CART} element={<Cart />} />
+          <Route path={pageUrl.PAYMENT} element={<Payment />} />
           <Route path="/*" element={<>404</>} />
         </Route>
       </Routes>

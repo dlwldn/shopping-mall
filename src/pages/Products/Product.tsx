@@ -1,11 +1,11 @@
 import React from "react";
 import { useQuery } from "react-query";
-import ProductItem from "../../components/Products/ProductItem";
+import ProductList from "../../components/Products/ProductList";
 import { graphqlFetcher } from "../../lib/apis/base";
 import { queryKeys } from "../../lib/consts/queryKey";
 import { GET_PRODUCTS, Products } from "../../lib/graphql/products";
 
-const ProductList = () => {
+const Product = () => {
   const { data } = useQuery<Products>(queryKeys.PRODUCTS, () =>
     graphqlFetcher(GET_PRODUCTS)
   );
@@ -13,13 +13,9 @@ const ProductList = () => {
   return (
     <div>
       <h2>상품목록</h2>
-      <ul className="products">
-        {data?.products?.map((product) => {
-          return <ProductItem {...product} key={product.id} />;
-        })}
-      </ul>
+      <ProductList list={data?.products || []}/>
     </div>
   );
 };
 
-export default ProductList;
+export default Product;

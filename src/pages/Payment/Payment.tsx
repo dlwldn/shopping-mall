@@ -1,7 +1,12 @@
 import React from "react";
+import PaymentContent from "../../components/Payment/PaymentContent";
 
 const Payment = () => {
-  return <div>Payment</div>;
+  return (
+    <div>
+      <PaymentContent />
+    </div>
+  );
 };
 
 export default Payment;

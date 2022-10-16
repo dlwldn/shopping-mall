@@ -3,4 +3,5 @@ export const pageUrl = {
   PRODUCT_LIST: '/products' as const,
   PRODUCT_DETAIL: '/products/:id' as const,
   CART: '/cart' as const,
+  PAYMENT: '/payment' as const
 }
