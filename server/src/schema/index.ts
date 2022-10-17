@@ -1,6 +1,6 @@
-import { gql } from 'apollo-server-express'
-import productSchema from './product'
-import cartSchema from './cart'
+import { gql } from "apollo-server-express";
+import productSchema from "./product";
+import cartSchema from "./cart";
 
 const linkSchema = gql`
   type Query {
@@ -9,6 +9,6 @@ const linkSchema = gql`
   type Mutation {
     _: Boolean
   }
-`
+`;
 
-export default [linkSchema, productSchema, cartSchema]
+export default [linkSchema, productSchema, cartSchema];
