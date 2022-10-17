@@ -8,8 +8,9 @@ import { GET_PRODUCT, Product } from "../../lib/graphql/products";
 
 const ProductDetail = () => {
   const { id } = useParams();
-  const { data } = useQuery<Product>([queryKeys.PRODUCTS, id], () =>
-    graphqlFetcher(GET_PRODUCT, { id })
+  const { data } = useQuery<{ product: Product }>(
+    [queryKeys.PRODUCTS, id],
+    () => graphqlFetcher(GET_PRODUCT, { id })
   );
 
   if (!data) return null;
@@ -17,7 +18,7 @@ const ProductDetail = () => {
   return (
     <div>
       <h2>상품상세</h2>
-      <ProductDetailInfo {...data} />
+      <ProductDetailInfo {...data.product} />
     </div>
   );
 };

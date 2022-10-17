@@ -6,7 +6,7 @@ import { queryKeys } from "../../lib/consts/queryKey";
 import { CartType, GET_CART } from "../../lib/graphql/cart";
 
 const Cart = () => {
-  const { data } = useQuery<CartType[]>([queryKeys.CART], () =>
+  const { data } = useQuery<{ cart: CartType[] }>([queryKeys.CART], () =>
     graphqlFetcher(GET_CART),
     {
       staleTime: 0,
@@ -14,7 +14,7 @@ const Cart = () => {
     }
   );
 
-  const cartItems = Object.values(data || {}) as CartType[];
+  const cartItems = (data?.cart || []) as CartType[]
 
   if(!cartItems.length) return <div>장바구니가 비었어요.</div>
 

@@ -1,7 +1,7 @@
 import request, { RequestDocument } from "graphql-request";
 
 const BASE_URL = "https://fakestoreapi.com";
-const GRAPHQL_BASE_URL = "/";
+const GRAPHQL_BASE_URL = "http://localhost:8000/graphql";
 
 type AnyOBJ = {
   [key: string]: any;
